@@ -11,3 +11,6 @@ No special requirements at the time
 ## .NET platform
 It haves methods to work with String^
 Actually,can be used even without .net platform("cli" may you call it)
+
+# Installation
+Copy .h file into your project directory and add like an every other file.
