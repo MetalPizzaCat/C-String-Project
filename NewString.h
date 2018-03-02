@@ -326,6 +326,30 @@ namespace NewString {
 				return 1;
 			}
 		}
+		string SubString(int startPos,int endPos)
+		{
+			if (this->Text->empty() != true)
+			{
+				if (this->Size() > startPos &&this->Size() > endPos)
+				{
+					vector<wchar_t>::iterator st = find(this->Text->begin(), this->Text->end(), this->Text->at(startPos));
+					vector<wchar_t>::iterator en= find(this->Text->begin(), this->Text->end(), this->Text->at(endPos));
+					vector<wchar_t>*resV = new vector<wchar_t>(st, en);
+					resV->push_back('\0');
+					string res;
+					res.Text = resV;
+					return res;
+				}
+				else
+				{
+					throw(Exeptions::OutOfBounds());
+				}
+			}
+			else
+			{
+				throw(Exeptions::StringIsEmrty());
+			}
+		}
 	};
 
 }
