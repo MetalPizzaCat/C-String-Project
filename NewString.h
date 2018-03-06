@@ -131,33 +131,7 @@ namespace NewString {
 				return res;
 			}
 		}
-#pragma region Cut
-		/*string SubString(unsigned Start,unsigned End)
-		{
-			if (this->Text->empty() != true)
-			{
-				if (End < this->Text->size())
-				{
-					string res;
-					for (int i = Start; i < Start - End; i++)
-					{
-						res.Text->push_back(this->Text->at(i));
-					}
-					return res;
-				}
-				else
-				{
 
-				}
-			}
-			else
-			{
-
-			}
-	
-		
-		}*/
-#pragma endregion
 		int IndexOf(wchar_t letter)
 		{
 
