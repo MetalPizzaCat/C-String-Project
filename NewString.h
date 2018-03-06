@@ -1,16 +1,18 @@
 
+#pragma once
 //Please do not add or change included files
 //it won't work without them
-#pragma once
 #include <vector>
 #include <iostream>
-
+#define _nstring_ 27120
 
 
 
 
 namespace NewString {
+#if __cplusplus_cli
 	using namespace System;
+#endif
 	using namespace std;
 	namespace Exeptions
 	{
@@ -78,6 +80,19 @@ namespace NewString {
 			}
 		
 		}
+		string operator=(const char text[])
+		{
+			Text->clear();
+			if (sizeof(text) > 0)
+			{
+				for (int i = 0; i < sizeof(text); i++)
+				{
+					Text->push_back(text[i]);
+				}
+				Text->push_back('\0');
+			}
+
+		}
 		string operator=(std::string text)
 		{
 			Text->clear();
@@ -131,7 +146,6 @@ namespace NewString {
 				return res;
 			}
 		}
-
 		int IndexOf(wchar_t letter)
 		{
 
@@ -229,6 +243,7 @@ namespace NewString {
 			}
 
 		}
+
 		bool operator==(String^text)
 		{
 			if (this->Text->size() != text->Length)
@@ -313,6 +328,79 @@ namespace NewString {
 					string res;
 					res.Text = resV;
 					return res;
+				}
+				else
+				{
+					throw(Exeptions::OutOfBounds());
+				}
+			}
+			else
+			{
+				throw(Exeptions::StringIsEmrty());
+			}
+		}
+		vector<wchar_t>::iterator FrontIterator(void)
+		{
+				return this->Text->begin();
+		}
+		vector<wchar_t>::iterator EndIterator(void)
+		{
+			return this->Text->end();
+		}
+		bool StartsWith(string text)
+		{
+			if (this->Text->empty() != true)
+			{
+				for (int i = 0; i < text.Size()-1; i++)
+				{
+					if (this->Text->at(i) == text[i])
+						{
+							continue;
+						}
+					else
+					{
+						return 0;
+						break;	
+					}
+				}
+					return 1;
+			}
+			else
+			{
+				throw(Exeptions::StringIsEmrty());
+			}
+		}
+		bool IsEmrty()
+		{
+			return this->Text->empty();
+		}
+		void Trim()
+		{
+			if(this->IsEmrty() != true)
+			{
+				string res;
+				for (int i = 0; i < this->Size(); i++)
+				{
+					if (this->Text->at(i) != ' ')
+					{
+						res.PushBack(this->Text->at(i));
+					}
+				}
+				this->Text = res.Text;
+			}
+			else
+			{
+				throw(Exeptions::StringIsEmrty());
+			}
+		}
+		nstring Replace(int Pos, wchar_t letter)
+		{
+			if (this->IsEmrty() != true)
+			{
+				if (Pos < this->Size())
+				{
+					this->Text->at(Pos) = letter;
+					return *this;
 				}
 				else
 				{
