@@ -1,4 +1,3 @@
-
 #pragma once
 //Please do not add or change included files
 //it won't work without them
@@ -24,6 +23,7 @@ namespace NewString {
 		{
 			StringIsEmrty(){}
 		};
+
 	}
 	class string
 	{
@@ -267,7 +267,38 @@ namespace NewString {
 				return 1;
 			}
 		}
-
+		bool AnyOf(String^text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text->Length; y++)
+				{
+					if (this->Text->at(i) == text[y])
+					{
+						return 1;
+						break;
+					}
+				}
+				
+			}
+			return 0;
+		}
+		int IndexOfAny(String^text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text->Length; y++)
+				{
+					if (this->Text->at(i) == text[y])
+					{
+						return i;
+						break;
+					}
+				}
+				
+			}
+			throw(new std::exception("No Such Letter in The String"));
+		}
 #endif
 		bool operator==(string string)
 		{
@@ -393,7 +424,39 @@ namespace NewString {
 				throw(Exeptions::StringIsEmrty());
 			}
 		}
-		nstring Replace(int Pos, wchar_t letter)
+		bool AnyOf(string text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text.Size(); y++)
+				{
+					if (this->Text->at(i) == text[y])
+					{
+						return 1;
+						break;
+					}
+				}
+				
+			}
+			return 0;
+		}
+		bool AnyOf(string* text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text->Size(); y++)
+				{
+					if (this->Text->at(i) == text->Text->at(i))
+					{
+						return 1;
+						break;
+					}
+				}
+				
+			}
+			return 0;
+		}
+		string Replace(int Pos, wchar_t letter)
 		{
 			if (this->IsEmrty() != true)
 			{
@@ -411,6 +474,38 @@ namespace NewString {
 			{
 				throw(Exeptions::StringIsEmrty());
 			}
+		}
+		int IndexOfAny(string* text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text->Size(); y++)
+				{
+					if (this->Text->at(i) == text->Text->at(y))
+					{
+						return i;
+						break;
+					}
+				}
+				
+			}
+			throw(new std::exception("No Such Letter in The String"));
+		}
+		int IndexOfAny(string text)
+		{
+			for (int i = 0; i < this->Size(); i++)
+			{
+				for (int y = 0; y < text.Size(); y++)
+				{
+					if (this->Text->at(i) == text[y])
+					{
+						return i;
+						break;
+					}
+				}
+				
+			}
+			throw(new std::exception("No Such Letter in The String"));
 		}
 	};
 
